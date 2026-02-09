@@ -121,6 +121,8 @@ void GameEngine::startNewGame() {
         int targetRow = board.getDropRow(col);
         if (targetRow == -1) {
             cout << "Diese Spalte ist voll. Bitte eine andere Spalte wählen.\n";
+            pressEnterToContinue();
+            clearInputLine();
             continue;
         }
 
@@ -147,7 +149,7 @@ void GameEngine::startNewGame() {
             result = currentPlayer + 1;
             gameOver = true;
         } else if (board.isFull()) {
-            board.printPretty(symbols[0], symbols[1]);
+            //board.printPretty(symbols[0], symbols[1]);
             cout << "Unentschieden (Brett voll).\n";
             result = 0;
             gameOver = true;

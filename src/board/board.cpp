@@ -18,7 +18,9 @@ bool Board::isValidColumn(int col) const {
 }
 
 int Board::dropDisc(int col, char symbol) {
-    if (!isValidColumn(col)) return -1;
+    if (col < 0 || col >= COLS) return -1;
+    if (grid[0][col] != ' ') return -1;
+
     for (int r = ROWS - 1; r >= 0; --r) {
         if (grid[r][col] == ' ') {
             grid[r][col] = symbol;
