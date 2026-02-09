@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -114,26 +115,64 @@ vector<PlayerStats> Stats::loadAggregated(const string& filenameCsv) {
 }
 
 void Stats::printReport(const vector<PlayerStats>& stats) {
+    using std::cout;
+    using std::left;
+    using std::right;
+    using std::setw;
+    using std::fixed;
+    using std::setprecision;
+
     if (stats.empty()) {
         cout << "Keine Statistikdaten vorhanden (logs/stats.csv).\n\n";
         return;
     }
 
+    // Spaltenbreiten (Name dynamisch, mind. 10)
+    int nameW = 10;
+    for (const auto& s : stats) {
+        if ((int)s.name.size() + 2 > nameW) nameW = (int)s.name.size() + 2;
+        if (nameW > 24) nameW = 24; // cap, damit es nicht sprengt
+    }
+
     cout << "\n=== Spieler-Statistiken ===\n";
-    cout << "Name | Spiele | W | U | L | Zuege | Ø ms/Zug | Schnellster | Langsamster\n";
-    cout << "-----------------------------------------------------------------------\n";
+    cout << left  << setw(nameW) << "Name"
+         << right << setw(7)  << "Spiele"
+         << setw(5)  << "W"
+         << setw(5)  << "U"
+         << setw(5)  << "L"
+         << setw(8)  << "Zuege"
+         << setw(11) << "Øms/Zug"
+         << setw(11) << "Øs/Zug"
+         << setw(12) << "Fast(ms)"
+         << setw(12) << "Slow(ms)"
+         << "\n";
+
+    cout << std::string(nameW + 7 + 5 + 5 + 5 + 8 + 11 + 11 + 12 + 12, '-') << "\n";
 
     for (const auto& s : stats) {
-        long long avg = (s.moves > 0) ? (s.totalMoveMs / s.moves) : 0;
-        cout << s.name << " | "
-             << s.games << " | "
-             << s.wins << " | "
-             << s.draws << " | "
-             << s.losses << " | "
-             << s.moves << " | "
-             << avg << " | "
-             << s.fastestMoveMs << " | "
-             << s.slowestMoveMs << "\n";
+        long long avgMs = (s.moves > 0) ? (s.totalMoveMs / s.moves) : 0;
+        double avgS = (s.moves > 0) ? ((double)s.totalMoveMs / 1000.0 / (double)s.moves) : 0.0;
+
+        // -1 sauber anzeigen
+        auto showOrDash = [](long long v) -> long long { return v < 0 ? 0 : v; };
+
+        cout << left  << setw(nameW) << (s.name.size() > (size_t)(nameW-2) ? s.name.substr(0, nameW-2) : s.name)
+             << right << setw(7)  << s.games
+             << setw(5)  << s.wins
+             << setw(5)  << s.draws
+             << setw(5)  << s.losses
+             << setw(8)  << s.moves
+             << setw(11) << avgMs
+             << setw(11) << fixed << setprecision(2) << avgS
+             << setw(12) << (s.fastestMoveMs < 0 ? -1 : s.fastestMoveMs)
+             << setw(12) << (s.slowestMoveMs < 0 ? -1 : s.slowestMoveMs)
+             << "\n";
+
+        // setprecision bleibt sonst “kleben”, daher wieder zurück (optional)
+        cout.unsetf(std::ios::floatfield);
+        cout << setprecision(6);
     }
+
     cout << "\n";
 }
+
