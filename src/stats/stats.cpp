@@ -77,6 +77,7 @@ vector<PlayerStats> Stats::loadAggregated(const string& filenameCsv) {
         getline(ss, p1, ',');
         getline(ss, tok, ','); result = stoi(tok);
         getline(ss, tok, ','); totalGameMs = stoll(tok);
+        (void)totalGameMs; // unused currently
         getline(ss, tok, ','); moves0 = stoll(tok);
         getline(ss, tok, ','); moves1 = stoll(tok);
         getline(ss, tok, ','); totalMs0 = stoll(tok);
@@ -140,7 +141,7 @@ void Stats::printReport(const vector<PlayerStats>& stats) {
          << setw(5)  << "W"
          << setw(5)  << "U"
          << setw(5)  << "L"
-         << setw(8)  << "Zuege"
+         << setw(8)  << "Züge"
          << setw(11) << "Øms/Zug"
          << setw(11) << "Øs/Zug"
          << setw(12) << "Fast(ms)"
@@ -152,9 +153,6 @@ void Stats::printReport(const vector<PlayerStats>& stats) {
     for (const auto& s : stats) {
         long long avgMs = (s.moves > 0) ? (s.totalMoveMs / s.moves) : 0;
         double avgS = (s.moves > 0) ? ((double)s.totalMoveMs / 1000.0 / (double)s.moves) : 0.0;
-
-        // -1 sauber anzeigen
-        auto showOrDash = [](long long v) -> long long { return v < 0 ? 0 : v; };
 
         cout << left  << setw(nameW) << (s.name.size() > (size_t)(nameW-2) ? s.name.substr(0, nameW-2) : s.name)
              << right << setw(7)  << s.games
