@@ -15,24 +15,40 @@ Enthalten sind **Menü**, **2-Spieler-Spiel** (7×6), **Zugvalidierung**, **Gewi
 - Logdatei wird beim Spielen geschrieben
 - Replay-Modus: Spiel kann aus Logdatei wiedergegeben werden
 - Test-Suite zur Prüfung der Kernlogik
+- Statistische Auswertungen der Spieler
+
+---
+
+---
+
+## Voraussetzungen
+
+- Linux / macOS / WSL (getestet unter WSL)
+- **g++ mit C++17** (oder kompatibler Compiler)
+- `bash`
 
 ---
 
 ## Build & Run
 
-Mit Skripten (falls vorhanden):
-- `./build.sh`
-- `./run.sh`
+Mit Skripten (empfohlen):
+```bash
+chmod +x build.sh run.sh
+./build.sh
+./run.sh
+```
 
 Manuell (g++):
-- `g++ -std=c++17 -O2 -Wall -Wextra -o connect4 main.cpp`
-- `./connect4`
+```bash
+g++ -std=c++17 -O2 -Wall -Wextra -o connect4 main.cpp
+./connect4
+```
 
 ---
 
 ## Bedienung
 
-Nach dem Start erscheint ein Menü (z.B. Neues Spiel, Replay, Tests, Beenden).
+Nach dem Start erscheint ein Menü (z.B. Neues Spiel, Replay, Tests, Statistiken, Beenden).
 
 ### Neues Spiel
 - Eingabe einer Spalte (typisch **1–7**).
@@ -41,10 +57,12 @@ Nach dem Start erscheint ein Menü (z.B. Neues Spiel, Replay, Tests, Beenden).
 
 ### Replay
 - Lädt eine Logdatei und spielt die Züge in Reihenfolge nach.
-- Je nach Implementierung: schrittweise (Enter) oder automatisch.
 
 ### Tests
 - Führt die Test-Suite aus (z.B. Drop, Validierung, Win-Checks).
+
+### Statistiken
+- Zeigt für jeden aufgezichneten Spieler dessen Statistiken an.
 
 ---
 
@@ -76,7 +94,7 @@ Hinweis: Wenn `moveTimeMs` fehlt, sollte die Zeile trotzdem verarbeitet werden (
 
 - Spielbrett (7×6), Drop-Mechanik, Win/Draw
 - Menüführung
-- Logging + Replay
+- Logging + Replay + Analyse
 - Test-Suite für Kernfunktionen
 
 ---
