@@ -418,4 +418,4 @@ FodyWeavers.xsd
 *.msp
 
 # Build folder for this project
-.build/
+**/build/
