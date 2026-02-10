@@ -19,8 +19,6 @@ Enthalten sind **Menü**, **2-Spieler-Spiel** (7×6), **Zugvalidierung**, **Gewi
 
 ---
 
----
-
 ## Voraussetzungen
 
 - Linux / macOS / WSL (getestet unter WSL)
