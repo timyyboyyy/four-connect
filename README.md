@@ -48,7 +48,7 @@ g++ -std=c++17 -O2 -Wall -Wextra -o connect4 main.cpp
 
 ## Bedienung
 
-Nach dem Start erscheint ein Menü (z.B. Neues Spiel, Replay, Tests, Statistiken, Beenden).
+Nach dem Start erscheint ein Menü, durch welches mit den Pfeiltasten navigiert wird (z.B. Neues Spiel, Replay, Tests, Statistiken, Beenden).
 
 ### Neues Spiel
 - Eingabe einer Spalte (typisch **1–7**).
@@ -62,7 +62,7 @@ Nach dem Start erscheint ein Menü (z.B. Neues Spiel, Replay, Tests, Statistiken
 - Führt die Test-Suite aus (z.B. Drop, Validierung, Win-Checks).
 
 ### Statistiken
-- Zeigt für jeden aufgezichneten Spieler dessen Statistiken an.
+- Zeigt für jeden aufgezeichneten Spieler dessen Statistiken an.
 
 ---
 
@@ -101,4 +101,4 @@ Hinweis: Wenn `moveTimeMs` fehlt, sollte die Zeile trotzdem verarbeitet werden (
 
 ## Lizenz
 
-Nur für Studien-/Uni-Zwecke (sofern nicht anders angegeben).
+Nur für Studien-/Uni-Zwecke.
