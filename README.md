@@ -106,6 +106,11 @@ Nach dem Start erscheint ein Menü, durch welches mit den Pfeiltasten navigiert 
 
 ## Logdatei / Replay-Format
 
+Nach jeder gespielen Partie wird eine Logdatei zu dieser erstellt und im Ordner `logs/` abgelegt.
+Im selben Ordner liegt auch eine `stats.csv`, in welche nach jeder Partie die gesammelten Daten analysiert hinterlegt werden.
+
+---
+
 Es existieren zwei mögliche Header-Varianten:
 - `CONNECT4_LOG_V1`
 - `CONNECT4_LOG_V2`
@@ -113,8 +118,8 @@ Es existieren zwei mögliche Header-Varianten:
 Bedeutung pro Zugzeile: `Spieler Spalte [moveTimeMs]`
 
 - `Spieler`: `X` oder `O`
-- `Spalte`: Zielspalte (0–6 oder 1–7, je nach Implementierung)
-- `moveTimeMs` (optional, V2): Zugzeit in Millisekunden (falls erfasst)
+- `Spalte`: Zielspalte (0–6)
+- `moveTimeMs` (optional in V2): Zugzeit in Millisekunden (falls erfasst)
 
 Hinweis: Wenn `moveTimeMs` fehlt, sollte die Zeile trotzdem verarbeitet werden (Fallback wie V1).
 
