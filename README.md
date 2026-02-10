@@ -151,6 +151,8 @@ Hinweis: Wenn `moveTimeMs` fehlt, sollte die Zeile trotzdem verarbeitet werden (
 
 ---
 
-## Lizenz
+## License
 
-Nur für Studien-/Uni-Zwecke.
+Copyright (c) 2026 Tim
+
+Licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
