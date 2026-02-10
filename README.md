@@ -24,11 +24,13 @@ Enthalten sind **Menü**, **2-Spieler-Spiel** (7×6), **Zugvalidierung**, **Gewi
 ## Voraussetzungen
 
 - Linux / macOS / WSL (getestet unter WSL)
-- **g++ mit C++17** (oder kompatibler Compiler)
+- C++17-Compiler (**g++** oder kompatibel, z. B. **clang++** auf macOS)
 - `bash`
 
 
-### Installation g++ mit C++17 auf Debian/Ubuntu (falls nicht vorhanden)
+## Installation 
+
+### Debian/Ubunut (Linux/WSL)
 
 ```bash
 sudo apt update && sudo apt upgrade
@@ -38,13 +40,30 @@ g++ --version
 bash --version
 ```
 
-### Installation g++ mit C++17 auf Fedora (falls nicht vorhanden)
+### Fedora (Linux)
 
 ```bash
 sudo dnf install -y gcc-c++ bash
 
 g++ --version
 bash --version
+```
+
+### macOS
+
+Auf macOS ist standartmäßig clang++ aüber die Xcode Command Line Tools verfügbar.
+
+```bash
+xcode-select --install
+
+clang++ --version
+bash --version
+```
+(Optional, falls lieber mit GNU g++ gearbeitet wird)
+```bash
+brew install gcc
+
+g++-14 --version
 ```
 
 ---
@@ -58,9 +77,15 @@ chmod +x build.sh run.sh
 ./run.sh
 ```
 
-Manuell (g++):
+Manuell Linux/WSL (g++):
 ```bash
 g++ -std=c++17 -O2 -Wall -Wextra -o connect4 main.cpp
+./connect4
+```
+
+Manuell macOS (clang++):
+```bash
+clang++ -std=c++17 -O2 -Wall -Wextra -o connect4 main.cpp
 ./connect4
 ```
 
