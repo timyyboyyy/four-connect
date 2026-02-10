@@ -135,7 +135,7 @@ void Stats::printReport(const vector<PlayerStats>& stats) {
         if (nameW > 24) nameW = 24; // cap, damit es nicht sprengt
     }
 
-    cout << "\n=== Spieler-Statistiken ===\n";
+    cout << "\n================================= Spieler-Statistiken ================================\n";
     cout << left  << setw(nameW) << "Name"
          << right << setw(7)  << "Spiele"
          << setw(5)  << "W"

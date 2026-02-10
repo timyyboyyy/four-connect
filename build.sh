@@ -11,6 +11,7 @@ g++ -std=c++17 -O2 -Wall -Wextra \
   src/testsuite/*.cpp \
   src/util/*.cpp \
   src/stats/*.cpp \
+  src/mainmenu/*.cpp \
   -o build/vier_gewinnt
 
 

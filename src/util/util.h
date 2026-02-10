@@ -5,6 +5,7 @@
 
 // Hilfsfunktionen rund um Ein-/Ausgabe
 void clearInputLine();
+void clearInputLine2();
 bool isNumber(const std::string& s);
 void pressEnterToContinue();
 void showCountdown(int seconds);

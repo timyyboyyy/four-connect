@@ -67,6 +67,7 @@ namespace {
 }
 
 void GameEngine::startNewGame() {
+    clearScreen();
     Board board;
     string players[2];
     char symbols[2] = {'X', 'O'};
@@ -77,14 +78,14 @@ void GameEngine::startNewGame() {
     moves.clear();
     currentPlayer = 0;
 
-    clearInputLine(); 
-    cout << "\n=== Neues Spiel ===\n";
+    clearInputLine2(); 
+    cout << "\n============ Neues Spiel =============\n";
     cout << "Name Spieler 1 (Symbol X / Anzeige ●): ";
-    getline(cin, players[0]);
+    getline(cin >> ws, players[0]);
     if (players[0].empty()) players[0] = "Spieler 1";
 
     cout << "Name Spieler 2 (Symbol O / Anzeige ○): ";
-    getline(cin, players[1]);
+    getline(cin >> ws, players[1]);
     if (players[1].empty()) players[1] = "Spieler 2";
 
     bool gameOver = false;
@@ -202,7 +203,7 @@ void GameEngine::startNewGame() {
     string plyagain;
     cout << "Nochmals spielen? (j/n): ";
     cin >> plyagain;
-    clearInputLine();
+    //clearInputLine();
     if (!plyagain.empty() && (plyagain[0] == 'j' || plyagain[0] == 'J')) {
         startNewGame();
     } 
@@ -263,7 +264,7 @@ void GameEngine::replayFromFile(const string &filename) {
         // Prompt für nächster Zug / Abbruch
         bool isLast = (i + 1 == moves.size());
         if (!isLast) {
-            cout << "Enter = naechster Zug | q/0 = abbrechen: ";
+            cout << "Enter = nächster Zug | q/0 = abbrechen: ";
             string line;
             getline(cin, line);
             if (!line.empty() && (line[0] == 'q' || line[0] == 'Q' || line[0] == '0')) {

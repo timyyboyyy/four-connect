@@ -21,7 +21,14 @@ using namespace std;
 
 void clearInputLine() {
     cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+void clearInputLine2() {
+    cin.clear();
+    if (cin.rdbuf()->in_avail() > 0) {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
 }
 
 bool isNumber(const string& s) {
@@ -35,6 +42,9 @@ bool isNumber(const string& s) {
 void pressEnterToContinue() {
     cout << "Weiter mit Enter...";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    string dummy;
+    getline(cin, dummy);
 }
 
 void showCountdown(int seconds) {

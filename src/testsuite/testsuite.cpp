@@ -13,11 +13,12 @@ void TestSuite::assertTrue(bool cond, const string &msg) {
 }
 
 void TestSuite::run() {
-    cout << "\n=== TestSuite ===\n";
+    cout << "\n=========== TestSuite ===========\n";
     passed = failed = 0;
 
     // Test 1: Stein fällt nach unten
     {
+        cout << "teste dropDisc: Stein sollte in der untersten freien Reihe landen... \n";
         Board b;
         int row = b.dropDisc(0, 'X');
         assertTrue(row == ROWS - 1, "dropDisc: Stein sollte unten landen.");
@@ -25,13 +26,16 @@ void TestSuite::run() {
 
     // Test 2: Volle Spalte
     {
+        cout << "teste dropDisc: auffüllen der Spalte, welche voll -1 zurückgeben sollte... \n";
         Board b;
-        for (int i = 0; i < ROWS; ++i) assertTrue(b.dropDisc(2, 'O') != -1, "Spalte sollte auffüllbar sein.");
+        for (int i = 0; i < ROWS; ++i) 
+        assertTrue(b.dropDisc(2, 'O') != -1, "Spalte sollte auffüllbar sein.");
         assertTrue(b.dropDisc(2, 'O') == -1, "dropDisc: volle Spalte muss -1 liefern.");
     }
 
     // Test 3: Horizontal Win
     {
+        cout << "teste checkWin: horizontaler Sieg... \n";
         Board b;
         b.dropDisc(0, 'X'); b.dropDisc(1, 'X'); b.dropDisc(2, 'X'); b.dropDisc(3, 'X');
         assertTrue(b.checkWin('X'), "checkWin: horizontaler Sieg.");
@@ -39,6 +43,7 @@ void TestSuite::run() {
 
     // Test 4: Vertikal Win
     {
+        cout << "teste checkWin: vertikaler Sieg... \n";
         Board b;
         b.dropDisc(5, 'O'); b.dropDisc(5, 'O'); b.dropDisc(5, 'O'); b.dropDisc(5, 'O');
         assertTrue(b.checkWin('O'), "checkWin: vertikaler Sieg.");
@@ -46,6 +51,7 @@ void TestSuite::run() {
 
     // Test 5: Diagonal \\ Win
     {
+        cout << "teste checkWin: diagonaler Sieg... \n";
         Board b;
         b.dropDisc(0, 'X');
         b.dropDisc(1, 'O'); b.dropDisc(1, 'X');
@@ -56,6 +62,7 @@ void TestSuite::run() {
 
     // Test 6: isFull
     {
+        cout << "teste isFull: volles Brett erkennen... \n";
         Board b;
         char s[2] = {'X','O'};
         int idx = 0;
@@ -65,5 +72,5 @@ void TestSuite::run() {
     }
 
     cout << "Bestanden: " << passed << " | Fehlgeschlagen: " << failed << "\n";
-    cout << "=================\n\n";
+    cout << "=================================\n\n";
 }

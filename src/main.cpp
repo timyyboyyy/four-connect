@@ -6,6 +6,7 @@
 #include "testsuite/testsuite.h"
 #include "util/util.h"
 #include "stats/stats.h"
+#include "mainmenu/mainmenu.h"
 
 using namespace std;
 
@@ -15,23 +16,15 @@ int main() {
 
     while (true) {
         clearScreen();
-        cout << "==== 4 GEWINNT - SPIELENGINE ====\n";
-        cout << "1) Neues Spiel starten\n";
-        cout << "2) Spiel aus Logdatei wiederholen\n";
-        cout << "3) Tests ausführen\n";
-        cout << "4) Statistiken anzeigen\n";
-        cout << "5) Beenden\n";
-        cout << "Auswahl: ";
-
-        int choice;
-        if (!(cin >> choice)) {
+        int choice = MainMenu::show();
+        if (choice == -1) {
             cout << "Ungültige Eingabe.\n";
             clearInputLine();
             continue;
         }
-
+        
         if (choice == 1) {
-            clearScreen();
+            //clearScreen();
             engine.startNewGame();
             waitEnterPlain();
         } else if (choice == 2) {
@@ -73,13 +66,13 @@ int main() {
         } else if (choice == 3) {
             clearScreen();
             tests.run();
-            waitEnterAfterCin();
+            waitEnterPlain();
         } else if (choice == 4) {
             clearScreen();
             auto stats = Stats::loadAggregated("logs/stats.csv");
             Stats::printReport(stats);
-            waitEnterAfterCin();
-        } else if (choice == 5) {
+            waitEnterPlain();
+        } else if (choice == 5 || choice == 0) {
             cout << "Beenden.\n";
             break;
         } else {
